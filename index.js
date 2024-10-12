@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
-
 app.set("view engine", "ejs");
+require("dotenv").config();
 
 app.get("/", (req, res) => {
   res.render("index");
@@ -21,6 +21,24 @@ app.get("/api/users", (req, res) => {
     res.json(users);
 });
 
+app.post('/api/users', function(req, res) {
+     const name = req.body.name
+     res.status(201).json({ message: 'User created successfully' });
+
+});
+
+app.put('/api/users/:id', function(req, res)  {
+
+     res.status(200).json({ message: 'User updated successfully' });
+     res.end();
+});
+
+app.delete('/api/users/:id', function(req, res) {
+     res.status(200).json({ message: 'User deleted successfully' });
+     res.end();
+});
+
+
 app.get("/api/products", (req, res) => {
     const products = [
         { id: 1, name: "Product 1", price: 10.99 },
@@ -30,6 +48,6 @@ app.get("/api/products", (req, res) => {
     res.json(products);
 });
 
-app.listen(8080, function() {
-console.log("Server Started Running PORT on 8080")
+app.listen(process.env.PORT, function() {
+console.log(`Server Started Running PORT on ${process.env.PORT}!`)
 })
