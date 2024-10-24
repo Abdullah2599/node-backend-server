@@ -1,18 +1,21 @@
+const userServices = require("../services/userServices");
+
+
 class userController{
-    list(req,res){
-        res.json({message: 'List all users'});
+ list(req,res){
+        userServices.list(req,res);
     }
     create(req,res){
-       res.json({message: 'Create a new user'});
+      
     }
-    async update(req,res){
+    update(req,res){
        res.json({message: 'Update a user'});
      
     }
-    async delete(req,res) {
+    delete(req,res) {
         res.json({message: 'Delete a user'});
     }
-    async findById(req,res){
+    findById(req,res){
         res.json({message: 'Find a user'});    
     }
 
