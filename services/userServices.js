@@ -11,7 +11,16 @@ class userService{
         res.status(400).json({message:err})
     }
     }
-    async create(){
+    async create(req,res){
+        try{
+            const data =(({name,email,password}) => ({name,email,password}))(req.body);
+            User.insertMany([data]);
+            res.status(200).json({message:"User created succsesfully"})
+        }
+        catch(e)
+        {
+            res.status(404).json({message:`An error occured ${e}`})
+        }
         
     }
     async update(){
@@ -20,8 +29,16 @@ class userService{
     async delete(){
         
     }
-    async detail(){
-        
+    async detail(req,res){
+        try
+        {
+        const id = req.params.id;
+        const user = await User.findById(id);
+        res.status(200).json({message:"Found Record", data: user})
+        }
+        catch(e){
+            res.status(404).json({message:e})
+        }
     }
 }
 

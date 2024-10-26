@@ -6,6 +6,7 @@ class userController{
         userServices.list(req,res);
     }
     create(req,res){
+        userServices.create(req,res);
       
     }
     update(req,res){
@@ -16,7 +17,7 @@ class userController{
         res.json({message: 'Delete a user'});
     }
     findById(req,res){
-        res.json({message: 'Find a user'});    
+        userServices.detail(req,res);  
     }
 
 }
