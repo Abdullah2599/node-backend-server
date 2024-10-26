@@ -23,10 +23,30 @@ class userService{
         }
         
     }
-    async update(){
+    async update(req,res){
+        try
+        {
+        const id = req.params.id;
+        const data =(({name,email,password}) => ({name,email,password}))(req.body);
+        User.updateMany([data]);
+        const user = await User.findByIdAndUpdate(id);
+        res.status(200).json({message:"Found Record", data: user})
+        }
+        catch(e){
+            res.status(404).json({message:e})
+        }
         
     }
-    async delete(){
+    async delete(req,res){
+        try
+        {
+        const id = req.params.id;
+        const user = await User.findByIdAndDelete(id);
+        res.status(200).json({message:"User Deleted Sucessfully"})
+        }
+        catch(e){
+            res.status(404).json({message:e})
+        }
         
     }
     async detail(req,res){

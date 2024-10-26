@@ -10,11 +10,11 @@ class userController{
       
     }
     update(req,res){
-       res.json({message: 'Update a user'});
+      userServices.update(req,res);
      
     }
     delete(req,res) {
-        res.json({message: 'Delete a user'});
+       userServices.delete(req,res);
     }
     findById(req,res){
         userServices.detail(req,res);  
