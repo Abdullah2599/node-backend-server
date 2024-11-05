@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const userServices = require('../services/userServices');
 require ('dotenv').config();
 const key = process.env.KEY;
 
@@ -15,8 +16,7 @@ class Authentication{
             }
             req.user= decoded;
             next();
-        })
-    }
+        })}
 
     async login(req,res){
         const crdentials = (({email,password}) =>({email,password}))(req.body);
@@ -29,6 +29,10 @@ class Authentication{
     }
     catch(e){
         res.status(400).json({message:e})
+    }
+
+    async register(req,res){
+       userServices.create(req,res);
     }
 
 }

@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
 });
 
 app.use('/api/v1/user',Authentication.VerifyToken, userRouter);
-app.use('/api/v1/auth',Authentication.login, authRouter);
+app.use('/api/v1/auth', authRouter);
 app.listen(process.env.PORT, function() {
 console.log(`Server Started Running PORT on ${process.env.PORT}!`)
 })
