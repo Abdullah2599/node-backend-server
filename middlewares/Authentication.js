@@ -3,6 +3,7 @@ const User = require('../models/User');
 const userServices = require('../services/userServices');
 require ('dotenv').config();
 const key = process.env.KEY;
+let blacklist =[];
 
 class Authentication{
     VerifyToken(req,res,next){
@@ -35,5 +36,16 @@ class Authentication{
        userServices.create(req,res);
     }
 
+    logout(req, res){
+        const authHeader = req.headers['authorization'];
+        if(!authHeader) return res.status(403).json({message: 'No token provided'});
+
+        const token = authHeader.split(' ')[1];
+        if(!token) return res.status(403).json({message: 'No token provided'});
+
+        blacklist.push(token);
+        res.status(200).json({message: 'Logged out successfully'});
+
+    }
 }
 module.exports= new Authentication
