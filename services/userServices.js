@@ -35,7 +35,6 @@ class userService{
         catch(e){
             res.status(404).json({message:e})
         }
-        
     }
     async delete(req,res){
         try
