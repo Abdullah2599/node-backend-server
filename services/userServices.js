@@ -20,8 +20,7 @@ class userService{
         catch(e)
         {
             res.status(404).json({message:`An error occured ${e}`})
-        }
-        
+        } 
     }
     async update(req,res){
         try
@@ -45,8 +44,7 @@ class userService{
         }
         catch(e){
             res.status(404).json({message:e})
-        }
-        
+        } 
     }
     async detail(req,res){
         try
