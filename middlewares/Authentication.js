@@ -44,7 +44,7 @@ class Authentication{
             
                 // Only proceed if user exists
                 const token = jwt.sign({ email: user.email, name: user.name, id: user.id }, key, { expiresIn: '1h' });
-                res.status(200).json({ token });
+                res.status(200).json({ token , });
             }
             
 
