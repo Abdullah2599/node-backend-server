@@ -7,6 +7,7 @@ const userRouter = require("./routes/userRoute");
 const dbconnect = require("./config/dbconnect");
 const Authentication = require("./middlewares/Authentication");
 const authRouter = require("./routes/authRoute");
+const productRouter = require("./routes/productRoute");
 require("dotenv").config();
 
 app.use(cors())
@@ -21,6 +22,8 @@ app.get("/", (req, res) => {
 
 app.use('/api/v1/user',Authentication.VerifyToken, userRouter);
 app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/products', productRouter);
+
 app.listen(process.env.PORT, function() {
 console.log(`Server Started Running PORT on ${process.env.PORT}!`)
 })
